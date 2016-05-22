@@ -24,6 +24,9 @@ Vagrant.configure(2) do |config|
       app.vm.provider 'virtualbox' do |vb|
         vb.memory = '256'
       end
+      app.vm.provision :ansible do |ansible|
+        ansible.playbook = 'env/playbook.yml'
+      end
     end
   end
 
@@ -34,6 +37,9 @@ Vagrant.configure(2) do |config|
     db_config.vm.provider 'virtualbox' do |vb|
       vb.memory = '512'
     end
+    db_config.vm.provision :ansible do |ansible|
+      ansible.playbook = 'env/playbook.yml'
+    end
   end
 
   config.vm.define :lb do |lb_config|
@@ -43,6 +49,9 @@ Vagrant.configure(2) do |config|
     lb_config.vm.network 'forwarded_port', guest: 80, host: 8080
     lb_config.vm.provider 'virtualbox' do |vb|
       vb.memory = '256'
+    end
+    lb_config.vm.provision :ansible do |ansible|
+      ansible.playbook = 'env/playbook.yml'
     end
   end
 end
