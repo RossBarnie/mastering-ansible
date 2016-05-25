@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
     end
     config.vm.synced_folder 'src/', '/home/vagrant/ansible/'
     control_config.vm.provision :ansible do |ansible|
-      ansible.playbook = 'env/playbook.yml'
+      ansible.playbook = 'env/control.yml'
     end
   end
 
@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
         vb.memory = '256'
       end
       app.vm.provision :ansible do |ansible|
-        ansible.playbook = 'env/playbook.yml'
+        ansible.playbook = 'env/other.yml'
       end
     end
   end
@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
       vb.memory = '512'
     end
     db_config.vm.provision :ansible do |ansible|
-      ansible.playbook = 'env/playbook.yml'
+      ansible.playbook = 'env/other.yml'
     end
   end
 
@@ -51,7 +51,7 @@ Vagrant.configure(2) do |config|
       vb.memory = '256'
     end
     lb_config.vm.provision :ansible do |ansible|
-      ansible.playbook = 'env/playbook.yml'
+      ansible.playbook = 'env/other.yml'
     end
   end
 end
