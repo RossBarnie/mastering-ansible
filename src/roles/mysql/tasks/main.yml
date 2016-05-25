@@ -1,2 +1,25 @@
 ---
-# tasks file for mysql
+- name: Install tools
+  apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
+  with_items:
+    - python-mysqldb
+
+- name: Install MySQL
+  apt: name=mysql-server update_cache=yes cache_valid_time=3600 state=present
+
+- name: ensure mysql innodb_log_file_size is correct
+  lineinfile: dest=/etc/mysql/my.cnf regexp=^innodb_log_file_size line="innodb_log_file_size = 5M"
+  notify: restart mysql
+
+- name: ensure mysql is listening on all ports
+  lineinfile: dest=/etc/mysql/my.cnf regexp=^bind-address line="bind-address = 0.0.0.0"
+  notify: restart mysql
+
+- name : ensure mysql started
+  service: name=mysql state=started enabled=yes
+
+- name: add mysql demo user
+  mysql_user: name=demo password=demo priv=demo.*:ALL host='%' state=present
+
+- name: add demo database
+  mysql_db: name=demo state=present
