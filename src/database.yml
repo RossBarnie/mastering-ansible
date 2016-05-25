@@ -10,6 +10,10 @@
     - name: Install MySQL
       apt: name=mysql-server update_cache=yes cache_valid_time=3600 state=present
 
+    - name: ensure mysql innodb_log_file_size is correct
+      lineinfile: dest=/etc/mysql/my.cnf regexp=^innodb_log_file_size line="innodb_log_file_size = 5M"
+      notify: restart mysql
+
     - name : ensure mysql started
       service: name=mysql state=started enabled=yes
 
