@@ -24,7 +24,7 @@
       command: service mysql status
 
     - name: verify mysql listening on 3306
-      wait_for: port=3306 timeout=3
+      wait_for: host={{ ansible_eth1.ipv4.address }} port=3306 timeout=3
 
 - hosts: control
   tasks:
@@ -42,7 +42,7 @@
       with_items: "{{ groups.loadbalancer }}"
       register: lb_db
 
-    - fail: msg="index failed to return content"
+    - fail: msg="db failed to return content"
       when: "'Database Connected from' not in item.content"
       with_items: "{{ lb_db.results }}"
 
