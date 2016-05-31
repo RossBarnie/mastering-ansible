@@ -1,11 +1,11 @@
 ---
 - name: Install tools
-  apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
+  apt: name={{ item }}
   with_items:
     - python-mysqldb
 
 - name: Install MySQL
-  apt: name=mysql-server update_cache=yes cache_valid_time=3600 state=present
+  apt: name=mysql-server state=present
 
 - name: ensure mysql innodb_log_file_size is correct
   lineinfile: dest=/etc/mysql/my.cnf regexp=^innodb_log_file_size line="innodb_log_file_size = 5M"
