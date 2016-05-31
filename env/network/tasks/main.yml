@@ -3,3 +3,14 @@
   template:
     src: 'files/hosts'
     dest: '/etc/hosts'
+
+# NEVER use this in production.
+# Only using since I'm on private network with vagrant VMs
+- name: Remove host key checking
+  copy:
+    src: ssh_config
+    dest: /home/vagrant/.ssh/config
+    owner: vagrant
+    group: vagrant
+    mode: 0644
+

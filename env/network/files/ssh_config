@@ -1,0 +1,6 @@
+# For vagrant virtual machines
+Host 10.0.15.* app01 app02 lb01 db01
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+  User vagrant
+  LogLevel ERROR
