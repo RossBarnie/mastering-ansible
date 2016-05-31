@@ -5,6 +5,7 @@
   tasks:
     - name: verify nginx is running
       command: service nginx status
+      changed_when: false
 
     - name: verify nginx listening on 80
       wait_for: port=80 timeout=3
@@ -15,6 +16,7 @@
   tasks:
     - name: verify apache2 is running
       command: service apache2 status
+      changed_when: false
 
     - name: verify apache listening on 80
       wait_for: port=80 timeout=3
@@ -24,6 +26,7 @@
   tasks:
     - name: verify mysql is running
       command: service mysql status
+      changed_when: false
 
     - name: verify mysql listening on 3306
       wait_for: host={{ ansible_eth1.ipv4.address }} port=3306 timeout=3
