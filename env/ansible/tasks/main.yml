@@ -8,3 +8,5 @@
 - name: Install ansible
   apt: name=ansible state=latest
 
+- name: Set up ansible vault password
+  copy: src=vault.txt dest=/home/vagrant/.vault_pass.txt

@@ -24,14 +24,6 @@ change directory to `/home/vagrant/ansible`.
 This is where you will spend the majority of your time, and where the rest of
 these commands should be run.
 
-Configuring Ansible Vault
-===
-
-Before running any playbooks you will need to configure the ansible vault
-password like so:
-
-`echo demo >> ~/.vault_pass.txt`
-
 Configuring SSH
 ===
 
